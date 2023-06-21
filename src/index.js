@@ -1,6 +1,8 @@
+import { h, Component, render } from "preact";
+import App from "./App";
 import "./styles.css";
 
-console.log("Hello", document);
+render(<App />, document.body);
 
 // let loadInterval;
 // let i = 0;

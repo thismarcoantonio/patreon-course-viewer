@@ -1,4 +1,13 @@
 {
-  "plugins": ["@babel/syntax-dynamic-import"],
+  "plugins": [
+    "@babel/syntax-dynamic-import",
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "h",
+        "pragmaFrag": "Fragment"
+      }
+    ]
+  ],
   "presets": [["@babel/preset-env", { "modules": false }]]
 }
