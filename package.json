@@ -21,7 +21,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@mux/mux-player": "^1.11.2",
     "preact": "^10.15.1",
     "qs": "^6.11.2",
     "video.js": "^8.3.0"

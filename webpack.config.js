@@ -17,7 +17,20 @@ const config = {
       },
       {
         test: /\.css$/i,
+        include: /\.module\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: { modules: true, importLoaders: 1 },
+          },
+          "postcss-loader",
+        ],
+      },
+      {
+        test: /\.css$/i,
         use: ["style-loader", "css-loader", "postcss-loader"],
+        exclude: /\.module\.css$/,
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
