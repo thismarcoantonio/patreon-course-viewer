@@ -1,13 +1,17 @@
 import { h } from "preact";
 
-export function PostList({ posts = [], setActivePostId }) {
+export function PostList({ posts = {}, setActivePostId, setPostWatched }) {
   const handlePostSelect = (post) => () => {
     setActivePostId(post.id);
   };
 
+  const handleCheckboxToggle = (post) => () => {
+    setPostWatched(post.id);
+  };
+
   return (
     <ul className="patreon-course-viewer__list">
-      {posts.map((post) => (
+      {Object.values(posts).map((post) => (
         <li
           className="patreon-course-viewer__list-item"
           onClick={handlePostSelect(post)}
@@ -21,7 +25,11 @@ export function PostList({ posts = [], setActivePostId }) {
             />
           )}
           <div>{post.title}</div>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={handleCheckboxToggle(post)}
+            checked={post.watched}
+          />
         </li>
       ))}
     </ul>
