@@ -39,7 +39,7 @@ export async function getPosts(page = "first") {
     "json-api-version": 1.0,
   };
 
-  const { data, meta } = await api("https://www.patreon.com/api/posts", {
+  const { data, meta } = await api("/posts", {
     params,
   });
 
