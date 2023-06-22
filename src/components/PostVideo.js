@@ -5,8 +5,10 @@ import videojs from "video.js";
 export function PostVideo({ video }) {
   useLayoutEffect(() => {
     const player = videojs("patreonCourseViewerVideoPlayer");
-    return player.dispose;
-  }, [video]);
+    return () => {
+      player.dispose();
+    };
+  }, []);
 
   return (
     <video

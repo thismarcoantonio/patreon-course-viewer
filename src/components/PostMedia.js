@@ -12,7 +12,7 @@ export function PostMedia({ post }) {
   return (
     <div className="patreon-course-viewer__video">
       {post.postType === POST_TYPES.VIDEO_EXTERNAL_FILE && (
-        <PostVideo video={post.file.url} />
+        <PostVideo key={post.id} video={post.file.url} />
       )}
       {post.postType === POST_TYPES.VIDEO_EMBED && (
         <PostEmbed embed={post.embed} />
