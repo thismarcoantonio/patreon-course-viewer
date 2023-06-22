@@ -23,5 +23,11 @@ chrome.action.onClicked.addListener(async (tab) => {
         files: ["content.js"],
       });
     }
+    if (nextState === "OFF") {
+      await chrome.scripting.executeScript({
+        target: { tabId: tab.id, allFrames: true },
+        files: ["reset.js"],
+      });
+    }
   }
 });

@@ -1,0 +1,56 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reactWrapper {
+  display: none;
+}
+
+.patreon-course-viewer {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.patreon-course-viewer__loading {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000000;
+}
+
+.patreon-course-viewer__content {
+  width: 70%;
+  flex-shrink: 0;
+}
+
+.patreon-course-viewer__video {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  background-color: black;
+}
+
+.patreon-course-viewer__video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.patreon-course-viewer__list {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.patreon-course-viewer__list-item {
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid grey;
+}
