@@ -1,13 +1,20 @@
 import { h } from "preact";
+import videojs from "video.js";
 
-export function PostVideo({ post }) {
+export function PostVideo({ video }) {
+  useLayoutEffect(() => {
+    const player = videojs("patreonCourseViewerVideoPlayer");
+    return player.dispose;
+  }, [video]);
+
   return (
-    <div className="patreon-course-viewer__video">
-      <img
-        className="patreon-course-viewer__video-thumbnail"
-        src={post.thumbnail}
-        alt={post.title}
-      />
-    </div>
+    <video
+      controls
+      data-setup="{}"
+      class="video-js"
+      id="patreonCourseViewerVideoPlayer"
+    >
+      <source src={video} type="application/x-mpegURL" />
+    </video>
   );
 }

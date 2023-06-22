@@ -19,6 +19,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 
     if (nextState === "ON") {
       await chrome.scripting.executeScript({
+        world: "MAIN",
         target: { tabId: tab.id, allFrames: true },
         files: ["content.js"],
       });
