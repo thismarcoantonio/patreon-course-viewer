@@ -1,0 +1,11 @@
+.postMedia {
+  width: 100%;
+  display: flex;
+  padding-top: 64px;
+  background-color: black;
+}
+
+.postMediaVideo {
+  width: 100%;
+  height: 56vw;
+}

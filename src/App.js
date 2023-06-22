@@ -1,9 +1,8 @@
 import { h } from "preact";
 import { useEffect, useState, useMemo } from "preact/hooks";
 import { Loading } from "./components/Loading";
+import { MainContent } from "./components/MainContent";
 import { PostList } from "./components/PostList";
-import { PostMedia, supportedMediaTypes } from "./components/PostMedia";
-import { PostDetails } from "./components/PostDetails";
 import { getPosts } from "./services/posts";
 import { togglePostCompleted } from "./utils/posts";
 import storage from "./utils/localStorage";
@@ -42,14 +41,7 @@ function App() {
     <Loading />
   ) : (
     <div className="patreon-course-viewer">
-      {activePost && (
-        <div className="patreon-course-viewer__content">
-          {supportedMediaTypes.includes(activePost.postType) && (
-            <PostMedia post={activePost} />
-          )}
-          <PostDetails post={activePost} />
-        </div>
-      )}
+      {activePost && <MainContent activePost={activePost} />}
       <PostList
         posts={posts}
         setActivePostId={setActivePostId}

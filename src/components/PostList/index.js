@@ -1,4 +1,5 @@
 import { h } from "preact";
+import styles from "./styles.module.css";
 
 export function PostList({ posts = {}, setActivePostId, setPostWatched }) {
   const handlePostSelect = (post) => () => {
@@ -10,10 +11,10 @@ export function PostList({ posts = {}, setActivePostId, setPostWatched }) {
   };
 
   return (
-    <ul className="patreon-course-viewer__list">
+    <ul className={styles.postList}>
       {Object.values(posts).map((post) => (
         <li
-          className="patreon-course-viewer__list-item"
+          className={styles.postListItem}
           onClick={handlePostSelect(post)}
           key={post.id}
         >
