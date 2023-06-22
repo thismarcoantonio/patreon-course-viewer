@@ -1,5 +1,6 @@
 import qs from "qs";
 import { api } from "./api";
+import storage from "../utils/localStorage";
 
 export const POST_TYPES = {
   TEXT_ONLY: "text_only",
@@ -7,7 +8,13 @@ export const POST_TYPES = {
   VIDEO_EMBED: "video_embed",
 };
 
-export async function getPosts() {
+export async function getPosts(page = "first") {
+  const savedPosts = storage.get(storage.KEYS.POSTS) || {};
+  const currentPost = savedPosts[page];
+  if (currentPost) {
+    return currentPost;
+  }
+
   const params = {
     include:
       "campaign,access_rules,attachments,audio,audio_preview.null,images,media,native_video_insights,poll.choices,poll.current_user_responses.user,poll.current_user_responses.choice,poll.current_user_responses.poll,user,user_defined_tags,ti_checks",
@@ -36,8 +43,9 @@ export async function getPosts() {
     params,
   });
 
-  return {
-    pagination: meta.pagination,
+  const payload = {
+    total: meta.pagination.total,
+    pagination: meta.pagination.cursors.next,
     posts: data.map(({ attributes, id, type }) => ({
       id,
       type,
@@ -53,4 +61,8 @@ export async function getPosts() {
       file: attributes.post_file,
     })),
   };
+
+  storage.save(storage.KEYS.POSTS, { ...savedPosts, [page]: payload });
+
+  return payload;
 }

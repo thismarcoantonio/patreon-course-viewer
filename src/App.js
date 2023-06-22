@@ -16,7 +16,7 @@ function App() {
     (async () => {
       setLoading(true);
       const { posts } = await getPosts();
-      setPosts(posts);
+      setPosts((previousPosts) => [...previousPosts, ...posts]);
       setActivePostId(posts[1].id);
       setLoading(false);
     })();
