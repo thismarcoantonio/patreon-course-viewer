@@ -26,6 +26,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     }
     if (nextState === "OFF") {
       await chrome.scripting.executeScript({
+        world: "MAIN",
         target: { tabId: tab.id, allFrames: true },
         files: ["reset.js"],
       });
