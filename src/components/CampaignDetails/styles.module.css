@@ -1,0 +1,22 @@
+.campaignDetails {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.campaignDetailsImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.campaignDetailsInfo {
+  margin-left: 12px;
+}
+
+.campaignDetailsDescription {
+  margin-top: 4px;
+  font-size: 14px;
+}

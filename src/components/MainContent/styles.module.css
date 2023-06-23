@@ -2,3 +2,10 @@
   width: 100%;
   padding: 56px 16px 16px;
 }
+
+@media screen and (min-width: 1200px) {
+  .mainContent {
+    padding: 0;
+    overflow-y: auto;
+  }
+}

@@ -100,3 +100,18 @@
 .postListItemCheckboxHidden {
   display: none;
 }
+
+@media screen and (min-width: 1200px) {
+  .postList {
+    width: 30%;
+    padding: 0;
+    flex-shrink: 0;
+    position: unset;
+    transition: unset;
+    transform: translateX(0);
+  }
+
+  .postListToggle {
+    display: none;
+  }
+}

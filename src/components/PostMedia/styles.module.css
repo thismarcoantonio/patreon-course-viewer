@@ -4,6 +4,7 @@
   background-color: var(--slate-950);
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 24px;
 }
 
 .postMediaVideo {
@@ -24,4 +25,11 @@
 .postMediaEmbed iframe {
   width: 100%;
   height: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .postMediaEmbed,
+  .postMediaVideo {
+    height: 75vh;
+  }
 }

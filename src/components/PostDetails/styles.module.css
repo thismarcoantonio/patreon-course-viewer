@@ -1,0 +1,23 @@
+.postDetailsTitle {
+  margin-bottom: 16px;
+}
+
+.postDetails p {
+  margin-bottom: 12px;
+  color: var(--slate-600);
+}
+
+.postDetails br {
+  display: none;
+}
+
+.postDetails a {
+  margin: 8px 0;
+  display: inline-block;
+  color: var(--blue-600);
+  text-decoration: none;
+}
+
+.postDetails a:hover {
+  text-decoration: underline;
+}
