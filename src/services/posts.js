@@ -1,3 +1,4 @@
+import qs from "qs";
 import { api } from "./api";
 import storage from "../utils/localStorage";
 
@@ -7,9 +8,10 @@ export const POST_TYPES = {
   VIDEO_EMBED: "video_embed",
 };
 
-export async function getPosts(page = "first") {
+export async function getPosts() {
+  const tag = qs.parse(window.location.search.slice(1)).filters.tag;
   const savedPosts = storage.get(storage.KEYS.POSTS) || {};
-  const currentPost = savedPosts[page];
+  const currentPost = savedPosts[tag];
   if (currentPost) {
     return currentPost;
   }
@@ -23,7 +25,10 @@ export async function getPosts(page = "first") {
       campaign_id: window.patreon.bootstrap.campaign.data.id,
       contains_exclusive_posts: true,
       is_draft: false,
-      tag: qs.parse(window.location.search.slice(1)).filters.tag,
+      tag,
+    },
+    page: {
+      count: 500,
     },
     sort: "published_at",
     "json-api-version": 1.0,
@@ -53,7 +58,7 @@ export async function getPosts(page = "first") {
     })),
   };
 
-  storage.save(storage.KEYS.POSTS, { ...savedPosts, [page]: payload });
+  storage.save(storage.KEYS.POSTS, { ...savedPosts, [tag]: payload });
 
   return payload;
 }

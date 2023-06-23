@@ -15,7 +15,6 @@ export function PostList({
   const [open, setOpen] = useState(false);
 
   const handlePostSelect = (post) => () => {
-    console.log("PARENT");
     setActivePostId(post.id);
     setOpen(false);
   };

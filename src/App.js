@@ -33,7 +33,6 @@ function App() {
       setActivePostId(posts[1].id);
 
       const campaign = await getCampaign();
-      console.log(campaign);
       setCampaign(campaign);
 
       setLoading(false);
