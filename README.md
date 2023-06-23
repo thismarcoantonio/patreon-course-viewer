@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# Patreon Course Viewer
 
-This project has been created using **webpack-cli**, you can now run
+Use patreon as if it is a course platform
 
-```
-npm run build
-```
+## Early access download
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+[Download here](https://drive.google.com/file/d/1MgELbPqLHr-AvSOQnZ6CXmP5V_fkzDVs/view?usp=drive_link)
