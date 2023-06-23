@@ -40,7 +40,7 @@ const config = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: ["background.js", "manifest.json", "reset.js"],
+      patterns: ["background.js", "manifest.json", "reset.js", "public/*"],
     }),
   ],
 };
