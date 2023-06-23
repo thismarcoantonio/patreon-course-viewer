@@ -4,6 +4,7 @@ import { Loading } from "./components/Loading";
 import { MainContent } from "./components/MainContent";
 import { PostList } from "./components/PostList";
 import { getPosts } from "./services/posts";
+import { getCampaign } from "./services/campaign";
 import { togglePostCompleted } from "./utils/posts";
 import storage from "./utils/localStorage";
 
@@ -11,11 +12,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState({});
   const [activePostId, setActivePostId] = useState(null);
+  const [campaign, setCampaign] = useState(null);
   const activePost = useMemo(() => posts[activePostId], [activePostId]);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
+
       const { posts } = await getPosts();
       const postProgress = storage.get(storage.KEYS.PROGRESS) || {};
       setPosts(
@@ -28,6 +31,11 @@ function App() {
         )
       );
       setActivePostId(posts[1].id);
+
+      const campaign = await getCampaign();
+      console.log(campaign);
+      setCampaign(campaign);
+
       setLoading(false);
     })();
   }, []);
@@ -41,9 +49,12 @@ function App() {
     <Loading />
   ) : (
     <div className="patreon-course-viewer">
-      {activePost && <MainContent activePost={activePost} />}
+      {activePost && (
+        <MainContent activePost={activePost} campaign={campaign} />
+      )}
       <PostList
         posts={posts}
+        activePostId={activePostId}
         setActivePostId={setActivePostId}
         setPostWatched={setPostWatched}
       />

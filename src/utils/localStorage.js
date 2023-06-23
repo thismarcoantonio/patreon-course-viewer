@@ -3,6 +3,7 @@ import config from "../config";
 const KEYS = {
   POSTS: "posts",
   PROGRESS: "progress",
+  CAMPAIGN: "campaign",
 };
 
 function get(key) {

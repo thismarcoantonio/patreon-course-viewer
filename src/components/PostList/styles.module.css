@@ -2,14 +2,101 @@
   top: 0;
   left: 0;
   z-index: 10;
+  width: 100%;
   height: 100%;
-  overflow-y: auto;
   position: fixed;
+  overflow-y: auto;
+  padding: 56px 16px 16px;
   transform: translateX(100%);
+  transition: 377ms transform ease-in-out;
+  background-color: var(--neutral-50);
+}
+
+.postListActive {
+  transform: translateX(0%);
+}
+
+.postListWrapper {
+  padding: 56px;
+}
+
+.postListToggle {
+  top: 16px;
+  right: 16px;
+  z-index: 11;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
 }
 
 .postListItem {
+  height: 80px;
+  padding: 4px;
   display: flex;
-  background-color: white;
-  border-bottom: 1px solid grey;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  align-items: center;
+  transition: 377ms ease-in-out;
+  border: 1px solid var(--slate-300);
+  transition-property: transform, box-shadow;
+}
+
+.postListItemActive {
+  border: 2px solid var(--rose-600);
+}
+
+.postListItem:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.postListItemThumbnail {
+  width: 25%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.postListItemContent {
+  width: 65%;
+  padding-left: 8px;
+}
+
+.postListItemTitle {
+  font-weight: 600;
+  color: var(--slate-900);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.postListItemDate {
+  font-size: 14px;
+  margin-top: 4px;
+  color: var(--slate-600);
+}
+
+.postListItemCheckbox {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  margin-left: auto;
+  margin-right: 8px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-50);
+  border: 1px solid var(--slate-300);
+}
+
+.postListItemCheckboxActive {
+  border-color: var(--teal-600);
+  background-color: var(--teal-400);
+}
+
+.postListItemCheckboxHidden {
+  display: none;
 }

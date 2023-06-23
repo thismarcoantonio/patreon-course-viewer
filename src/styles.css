@@ -1,6 +1,12 @@
-ul {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
   list-style: none;
 }
 
@@ -8,10 +14,23 @@ ul {
   display: none;
 }
 
+:root {
+  --neutral-50: #fafafa;
+  --slate-300: #cbd5e1;
+  --slate-600: #475569;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+  --teal-400: #2dd4bf;
+  --teal-600: #0d9488;
+  --rose-600: #e11d48;
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
 .patreon-course-viewer {
   height: 100vh;
   display: flex;
   overflow: hidden;
+  color: var(--slate-900);
 }
 
 .patreon-course-viewer__loading {

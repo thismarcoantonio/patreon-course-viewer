@@ -1,11 +1,27 @@
 .postMedia {
   width: 100%;
   display: flex;
-  padding-top: 64px;
-  background-color: black;
+  background-color: var(--slate-950);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .postMediaVideo {
   width: 100%;
-  height: 56vw;
+  height: 100%;
+}
+
+.postMediaVideo video {
+  position: relative !important;
+}
+
+.postMediaEmbed {
+  width: 100%;
+  height: 230px;
+  display: flex;
+}
+
+.postMediaEmbed iframe {
+  width: 100%;
+  height: 100%;
 }

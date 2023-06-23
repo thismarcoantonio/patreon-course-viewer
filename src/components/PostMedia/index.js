@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { POST_TYPES } from "../../services/posts";
 import { PostVideo } from "./PostVideo";
-import { PostEmbed } from "../PostEmbed";
+import { PostEmbed } from "./PostEmbed";
 import styles from "./styles.module.css";
 
 export const supportedMediaTypes = [
