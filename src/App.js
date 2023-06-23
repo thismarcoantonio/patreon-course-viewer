@@ -19,7 +19,7 @@ function App() {
     (async () => {
       setLoading(true);
 
-      const { posts } = await getPosts();
+      const posts = await getPosts();
       const postProgress = storage.get(storage.KEYS.PROGRESS) || {};
       setPosts(
         posts.reduce(
