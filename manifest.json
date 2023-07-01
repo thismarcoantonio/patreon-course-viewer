@@ -7,11 +7,17 @@
     "service_worker": "background.js"
   },
   "permissions": [
+    "tabs",
     "activeTab",
     "scripting"
   ],
   "action": {
-    "default_icon": {}
+    "default_icon": {
+      "16": "public/16-grey.png",
+      "32": "public/32-grey.png",
+      "48": "public/48-grey.png",
+      "128": "public/128-grey.png"
+    }
   },
   "icons": {
     "16": "public/16.png",
