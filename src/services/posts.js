@@ -23,7 +23,7 @@ export async function getPosts() {
       ...(tag && { tag }),
     },
     page: {
-      count: 500,
+      count: "infinity",
     },
     sort: "published_at",
     "json-api-version": 1.0,

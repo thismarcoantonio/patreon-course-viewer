@@ -17,8 +17,7 @@ chrome.action.onClicked.addListener(async (tab) => {
         target: { tabId: tab.id, allFrames: true },
         files: ["content.js"],
       });
-    }
-    if (isOpen) {
+    } else {
       await chrome.scripting.executeScript({
         world: "MAIN",
         target: { tabId: tab.id, allFrames: true },
