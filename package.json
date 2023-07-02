@@ -1,6 +1,6 @@
 {
   "name": "patreon-course-viewer",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Use patreon as if it is a course platform",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
