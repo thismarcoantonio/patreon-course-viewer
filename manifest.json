@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.0.2",
+  "version": "0.2",
   "name": "Patreon Course Viewer",
   "description": "Use patreon as if it is a course platform",
   "background": {
