@@ -36,3 +36,21 @@ export async function getCampaign() {
 
   return payload;
 }
+
+export async function getTags() {
+  const params = {
+    page: { count: "infinity" },
+    "json-api-version": 1.0,
+  };
+
+  const { data } = await api(`/campaigns/${config.campaignId}/post-tags`, {
+    params,
+  });
+
+  return data
+    .filter(({ attributes }) => attributes.tag_type === "user_defined")
+    .map(({ id, attributes }) => ({
+      id,
+      value: attributes.value,
+    }));
+}

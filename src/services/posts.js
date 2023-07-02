@@ -1,6 +1,6 @@
 import qs from "qs";
 import { api } from "./api";
-import storage from "../utils/localStorage";
+import config from "../config";
 
 export const POST_TYPES = {
   TEXT_ONLY: "text_only",
@@ -9,18 +9,15 @@ export const POST_TYPES = {
 };
 
 export async function getPosts() {
-  const tag = qs.parse(window.location.search.slice(1))?.filters?.tag;
-
   const params = {
-    include: "campaign",
+    include: "campaign,user_defined_tags",
     fields: {
       post: "change_visibility_at,comment_count,commenter_count,content,current_user_can_comment,current_user_can_delete,current_user_can_view,current_user_has_liked,current_user_can_report,embed,image,impression_count,insights_last_updated_at,is_paid,like_count,meta_image_url,min_cents_pledged_to_view,post_file,post_metadata,published_at,patreon_url,post_type,pledge_url,preview_asset_type,thumbnail,thumbnail_url,teaser_text,title,upgrade_url,url,was_posted_by_campaign_owner,has_ti_violation,moderation_status,post_level_suspension_removal_date,pls_one_liners_by_category,video_preview,view_count",
     },
     filter: {
-      campaign_id: window.patreon.bootstrap.campaign.data.id,
+      campaign_id: config.campaignId,
       contains_exclusive_posts: true,
       is_draft: false,
-      ...(tag && { tag }),
     },
     page: {
       count: "infinity",
@@ -33,7 +30,7 @@ export async function getPosts() {
     params,
   });
 
-  return data.map(({ attributes, id, type }) => ({
+  return data.map(({ attributes, id, type, relationships }) => ({
     id,
     type,
     postType: attributes.post_type,
@@ -47,5 +44,8 @@ export async function getPosts() {
     metaImage: attributes.meta_image_url,
     file: attributes.post_file,
     date: attributes.published_at,
+    tags: (relationships.user_defined_tags?.data || [])
+      .filter((tag) => tag.id.startsWith("user_defined;"))
+      .map((tag) => tag.id.slice(13)),
   }));
 }

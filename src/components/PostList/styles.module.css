@@ -104,10 +104,10 @@
 @media screen and (min-width: 1200px) {
   .postList {
     width: 30%;
-    padding: 0;
     flex-shrink: 0;
     position: unset;
     transition: unset;
+    padding: 16px 16px 0 0;
     transform: translateX(0);
   }
 

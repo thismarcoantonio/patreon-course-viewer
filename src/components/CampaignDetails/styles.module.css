@@ -1,8 +1,14 @@
 .campaignDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.campaignDetailsAuthor {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  margin-bottom: 24px;
 }
 
 .campaignDetailsImage {

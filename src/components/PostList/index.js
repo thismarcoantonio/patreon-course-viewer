@@ -1,28 +1,32 @@
 import { h, Fragment } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useMemo } from "preact/hooks";
 import cn from "classnames";
+import { usePosts } from "../../hooks/Posts";
+import { useTags } from "../../hooks/Tags";
 import { formatDate } from "../../utils/date";
 import { RemixIcon } from "../RemixIcon";
 import { Image } from "../Image";
 import styles from "./styles.module.css";
 
-export function PostList({
-  posts = {},
-  activePostId,
-  setActivePostId,
-  setPostWatched,
-}) {
+export function PostList() {
+  const { posts, activePost, setActivePost, toggleWatched } = usePosts();
+  const { activeTag } = useTags();
   const [open, setOpen] = useState(false);
 
+  const filteredPosts = useMemo(() => {
+    if (!activeTag) return posts;
+    return posts.filter((post) => post.tags.includes(activeTag));
+  }, [activeTag]);
+
   const handlePostSelect = (post) => () => {
-    setActivePostId(post.id);
+    setActivePost(post.id);
     setOpen(false);
   };
 
   const handleCheckboxToggle = (post) => (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setPostWatched(post.id);
+    toggleWatched(post.id);
   };
 
   const togglePostList = () => {
@@ -36,10 +40,10 @@ export function PostList({
       </div>
       <div class={cn(styles.postList, { [styles.postListActive]: open })}>
         <ul>
-          {Object.values(posts).map((post) => (
+          {filteredPosts.map((post) => (
             <li
               className={cn(styles.postListItem, {
-                [styles.postListItemActive]: post.id === activePostId,
+                [styles.postListItemActive]: post.id === activePost.id,
               })}
               onClick={handlePostSelect(post)}
               key={post.id}

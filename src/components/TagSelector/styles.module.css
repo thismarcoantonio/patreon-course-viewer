@@ -1,0 +1,8 @@
+.tagSelector {
+  padding: 8px;
+  outline: none;
+  border-radius: 3px;
+  color: var(--slate-600);
+  background: transparent;
+  border: 1px solid var(--slate-300);
+}
