@@ -1,7 +1,8 @@
 import { h, createContext } from "preact";
-import { useEffect, useState, useContext } from "preact/hooks";
+import { useEffect, useState, useContext, useMemo } from "preact/hooks";
 import { getPosts } from "../services/posts";
 import { togglePostCompleted } from "../utils/posts";
+import { useTags } from "./Tags";
 import storage from "../utils/localStorage";
 
 const PostsContext = createContext({});
@@ -10,6 +11,13 @@ export function PostsProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState({});
   const [activePostId, setActivePostId] = useState(null);
+  const { activeTag } = useTags();
+
+  const filteredPosts = useMemo(() => {
+    const postList = Object.values(posts);
+    if (!activeTag) return postList;
+    return postList.filter((post) => post.tags.includes(activeTag));
+  }, [activeTag, posts]);
 
   useEffect(() => {
     (async () => {
@@ -25,10 +33,18 @@ export function PostsProvider({ children }) {
           {}
         )
       );
-      setActivePostId(posts[0].id);
       setLoading(false);
     })();
   }, []);
+
+  useEffect(() => {
+    if (filteredPosts.length) {
+      const firstWatchedPost = filteredPosts.find((post) => !post.watched);
+      setActivePostId(
+        firstWatchedPost ? firstWatchedPost.id : filteredPosts[0].id
+      );
+    }
+  }, [filteredPosts]);
 
   const toggleWatched = (postId) => {
     const state = togglePostCompleted(postId);
@@ -39,7 +55,7 @@ export function PostsProvider({ children }) {
     <PostsContext.Provider
       value={{
         loading,
-        posts: Object.values(posts),
+        posts: filteredPosts,
         toggleWatched,
         setActivePost: setActivePostId,
         activePost: posts[activePostId],

@@ -12,12 +12,12 @@ root.setAttribute("id", "patreonCourseViewer");
 target.appendChild(root);
 
 render(
-  <PostsProvider>
-    <CampaignProvider>
-      <TagsProvider>
+  <CampaignProvider>
+    <TagsProvider>
+      <PostsProvider>
         <App />
-      </TagsProvider>
-    </CampaignProvider>
-  </PostsProvider>,
+      </PostsProvider>
+    </TagsProvider>
+  </CampaignProvider>,
   root
 );

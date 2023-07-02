@@ -7,10 +7,6 @@
   color: var(--slate-600);
 }
 
-.postDetails br {
-  display: none;
-}
-
 .postDetails a {
   margin: 8px 0;
   display: inline-block;

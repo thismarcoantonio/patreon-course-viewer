@@ -1,8 +1,7 @@
 import { h, Fragment } from "preact";
-import { useState, useMemo } from "preact/hooks";
+import { useState } from "preact/hooks";
 import cn from "classnames";
 import { usePosts } from "../../hooks/Posts";
-import { useTags } from "../../hooks/Tags";
 import { formatDate } from "../../utils/date";
 import { RemixIcon } from "../RemixIcon";
 import { Image } from "../Image";
@@ -10,13 +9,7 @@ import styles from "./styles.module.css";
 
 export function PostList() {
   const { posts, activePost, setActivePost, toggleWatched } = usePosts();
-  const { activeTag } = useTags();
   const [open, setOpen] = useState(false);
-
-  const filteredPosts = useMemo(() => {
-    if (!activeTag) return posts;
-    return posts.filter((post) => post.tags.includes(activeTag));
-  }, [activeTag]);
 
   const handlePostSelect = (post) => () => {
     setActivePost(post.id);
@@ -40,10 +33,10 @@ export function PostList() {
       </div>
       <div class={cn(styles.postList, { [styles.postListActive]: open })}>
         <ul>
-          {filteredPosts.map((post) => (
+          {posts.map((post) => (
             <li
               className={cn(styles.postListItem, {
-                [styles.postListItemActive]: post.id === activePost.id,
+                [styles.postListItemActive]: post.id === activePost?.id,
               })}
               onClick={handlePostSelect(post)}
               key={post.id}
