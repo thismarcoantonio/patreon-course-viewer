@@ -10,8 +10,8 @@ export function TagsProvider({ children }) {
   const [tags, setTags] = useState([]);
   const [activeTag, setActiveTag] = useState(
     decodeURIComponent(
-      qs.parse(window.location.search.slice(1))?.filters?.tag
-    ) || ""
+      qs.parse(window.location.search.slice(1))?.filters?.tag || ""
+    )
   );
 
   useEffect(() => {
@@ -24,8 +24,16 @@ export function TagsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const encodedParams = `?filters[tag]=${encodeURIComponent(activeTag)}`;
-    window.history.pushState({ path: encodedParams }, "", encodedParams);
+    if (activeTag) {
+      const encodedParams = `?filters[tag]=${encodeURIComponent(activeTag)}`;
+      window.history.pushState({ path: encodedParams }, "", encodedParams);
+    } else {
+      window.history.pushState(
+        { path: window.location.pathname },
+        "",
+        window.location.pathname
+      );
+    }
   }, [activeTag]);
 
   return (

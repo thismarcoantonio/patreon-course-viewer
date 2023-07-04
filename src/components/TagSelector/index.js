@@ -11,9 +11,9 @@ export function TagSelector() {
 
   return (
     <select
-      className={styles.tagSelector}
       value={activeTag}
       onChange={handleChange}
+      className={styles.tagSelector}
     >
       <option value="">No filter</option>
       {tags.map((tag) => (
